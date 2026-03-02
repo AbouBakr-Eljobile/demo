@@ -199,6 +199,8 @@ D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\dotnet.run
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\icudt_CJK.tjcz0u77k5.dat
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\icudt_EFIGS.tptq2av103.dat
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\icudt_no_CJK.lfu7j35m59.dat
+D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\GovContracts.Web.l74trzbbzh.wasm
+D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\GovContracts.Web.f39sq291n4.pdb
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\blazor.boot.json
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\blazor.webassembly.js.gz
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\Microsoft.AspNetCore.Authorization.9taw8vfmpb.wasm.gz
@@ -401,6 +403,8 @@ D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\dotnet.run
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\icudt_CJK.tjcz0u77k5.dat.gz
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\icudt_EFIGS.tptq2av103.dat.gz
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\icudt_no_CJK.lfu7j35m59.dat.gz
+D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\GovContracts.Web.l74trzbbzh.wasm.gz
+D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\GovContracts.Web.f39sq291n4.pdb.gz
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\blazor.boot.json.gz
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\GovContracts.Web.staticwebassets.runtime.json
 D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\GovContracts.Web.staticwebassets.endpoints.json
@@ -811,6 +815,8 @@ D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\scopedcss\bundle\GovContracts.Web.styles.css
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\blazor.build.boot-extension.json
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\blazor.boot.json
+D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\7zp4var3ak-ouixg5qv5f.gz
+D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\nzgu2qzizu-xaeidcp4nx.gz
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\sv3334ghik-bqjiyaj88i.gz
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\8ukwfhsfxe-c2jlpeoesf.gz
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\6so1wbw5ew-erw9l3u2r3.gz
@@ -1058,6 +1064,9 @@ D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\jyd8vaerzb-gqjxfj8
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\fw2eln28a0-tjcz0u77k5.gz
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\am8ji7n33g-tptq2av103.gz
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\2u7qhdxtrr-lfu7j35m59.gz
+D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\9vkr7o4sg6-l74trzbbzh.gz
+D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\h8iro30hyv-f39sq291n4.gz
+D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\xu6regfqzm-2gblj48mr4.gz
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\staticwebassets.build.json
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\staticwebassets.build.json.cache
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\staticwebassets.development.json
@@ -1067,12 +1076,3 @@ D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\GovContracts.Web.dll
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\refint\GovContracts.Web.dll
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\GovContracts.Web.pdb
 D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\ref\GovContracts.Web.dll
-D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\GovContracts.Web.tl7o16j4yx.wasm
-D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\GovContracts.Web.udbucj6mce.pdb
-D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\GovContracts.Web.tl7o16j4yx.wasm.gz
-D:\demo\frontend\GovContracts.Web\bin\Debug\net9.0\wwwroot\_framework\GovContracts.Web.udbucj6mce.pdb.gz
-D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\7zp4var3ak-ouixg5qv5f.gz
-D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\nzgu2qzizu-xaeidcp4nx.gz
-D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\9vkr7o4sg6-tl7o16j4yx.gz
-D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\h8iro30hyv-udbucj6mce.gz
-D:\demo\frontend\GovContracts.Web\obj\Debug\net9.0\compressed\xu6regfqzm-qu3ox2d2vr.gz
