@@ -1,0 +1,64 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager Navigation
+@inject GovContracts.Web.Services.AuthSessionService AuthSession
+
+@{
+    var currentPath = Navigation.ToBaseRelativePath(Navigation.Uri).ToLower();
+    var isLoginPage = string.IsNullOrWhiteSpace(currentPath) || currentPath == "login";
+}
+
+<div class="min-h-screen bg-slate-50 text-slate-800" dir="rtl" style="font-family: 'Cairo', sans-serif;">
+    <div class="flex min-h-screen">
+        @if (!isLoginPage)
+        {
+            <aside class="hidden w-72 border-l border-slate-200 bg-white shadow-sm md:block">
+                <div class="border-b border-slate-100 p-6">
+                    <p class="text-[10px] font-bold text-identity-gold uppercase tracking-wider">المملكة العربية السعودية</p>
+                    <h2 class="mt-1 text-lg font-bold text-identity-green">إدارة العقود الحكومية</h2>
+                </div>
+                <nav class="p-4 space-y-2">
+                    <a class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-identity-green transition-all" href="/dashboard">
+                        <span>لوحة التحكم</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-identity-green transition-all" href="/contracts/add">
+                        <span>إضافة عقد جديد</span>
+                    </a>
+                </nav>
+            </aside>
+        }
+
+        <main class="flex-1 border-r border-slate-100">
+            @if (!isLoginPage)
+            {
+                <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/80 px-6 py-4 backdrop-blur-md">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-slate-500">نظام توريد الخدمات والسلع</p>
+                            <h1 class="text-lg font-bold text-identity-green">بوابة العقود الإلكترونية</h1>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <button class="rounded-xl bg-identity-red px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:opacity-90 transition-all" @onclick="LogoutAsync">تسجيل الخروج</button>
+                        </div>
+                    </div>
+                </header>
+            }
+
+            <article class="mx-auto max-w-7xl p-6">
+                @Body
+            </article>
+        </main>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Navigation.LocationChanged += (s, e) => StateHasChanged();
+    }
+
+    private async Task LogoutAsync()
+    {
+        await AuthSession.ClearAsync();
+        Navigation.NavigateTo("/login", true);
+    }
+}

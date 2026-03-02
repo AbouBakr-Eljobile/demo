@@ -1,0 +1,145 @@
+@page "/"
+@page "/dashboard"
+@inject GovContracts.Web.Services.ContractsApiService ContractsApi
+@inject GovContracts.Web.Services.AuthSessionService AuthSession
+@inject NavigationManager Navigation
+
+<PageTitle>لوحة التحكم</PageTitle>
+
+<div class="space-y-8">
+    <div class="grid gap-6 md:grid-cols-3">
+        <div class="rounded-3xl bg-white p-7 shadow-sm border border-slate-100 transition-all hover:shadow-md">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-identity-green/10 text-identity-green">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+            </div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">إجمالي العقود</p>
+            <p class="mt-2 text-4xl font-black text-slate-800">@_contracts.Count</p>
+        </div>
+        <div class="rounded-3xl bg-white p-7 shadow-sm border border-slate-100 transition-all hover:shadow-md">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-identity-gold/10 text-identity-gold">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">حالة المنظومة</p>
+            <p class="mt-2 text-2xl font-bold text-slate-800">@(_contracts.Any() ? "نشط" : "بانتظار عقد")</p>
+        </div>
+        <div class="rounded-3xl bg-identity-green p-7 shadow-lg shadow-identity-green/20 text-white flex flex-col justify-between">
+            <div>
+                 <p class="text-[10px] font-bold uppercase tracking-widest text-white/60">إجراءات سريعة</p>
+                 <h3 class="text-xl font-bold mt-1">تجديد قاعدة البيانات</h3>
+            </div>
+            <a class="mt-6 flex items-center justify-center gap-2 rounded-2xl bg-white/20 py-3 text-sm font-bold backdrop-blur-sm transition-all hover:bg-white/30" href="/contracts/add">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+                <span>إضافة عقد جديد</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
+        <div class="mb-8 flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-bold text-slate-900">سجل العقود الموثقة</h2>
+                <p class="text-sm text-slate-400">قائمة بجميع العقود التي تم رفعها للنظام</p>
+            </div>
+            <button class="flex items-center gap-2 rounded-2xl border-2 border-slate-50 bg-slate-50 px-5 py-3 text-xs font-bold text-slate-600 transition-all hover:bg-slate-100" @onclick="LoadContractsAsync">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.586m15.414 1.586A9 9 0 1111 3.124" /></svg>
+                تحديث البيانات
+            </button>
+        </div>
+
+        @if (_isLoading)
+        {
+            <div class="flex flex-col items-center justify-center py-20 grayscale opacity-50">
+                <div class="h-12 w-12 animate-spin rounded-full border-4 border-slate-200 border-t-identity-green"></div>
+                <p class="mt-4 text-sm font-bold text-slate-400">جاري جلب الملفات...</p>
+            </div>
+        }
+        else if (!_contracts.Any())
+        {
+            <div class="flex flex-col items-center justify-center py-20 text-center">
+                <div class="mb-4 h-20 w-20 rounded-full bg-slate-50 p-5 text-slate-200">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" /></svg>
+                </div>
+                <h3 class="text-lg font-bold text-slate-600">لا توجد سجلات</h3>
+                <p class="text-sm text-slate-400">ابدأ بإضافة أول عقد للمنظومة الآن</p>
+            </div>
+        }
+        else
+        {
+            <div class="overflow-x-auto rounded-2xl border border-slate-50">
+                <table class="min-w-full text-right text-sm">
+                    <thead class="bg-slate-50/50 text-slate-400">
+                        <tr>
+                            <th class="px-6 py-4 font-bold uppercase tracking-wider">مسمى العقد</th>
+                            <th class="px-6 py-4 font-bold uppercase tracking-wider">تاريخ التوثيق</th>
+                            <th class="px-6 py-4 font-bold uppercase tracking-wider">مستند العقد</th>
+                            <th class="px-6 py-4 font-bold uppercase tracking-wider text-center">عمليات</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50">
+                        @foreach (var contract in _contracts)
+                        {
+                            <tr class="transition-all hover:bg-slate-50/50">
+                                <td class="px-6 py-5 font-bold text-slate-700">@contract.ContractName</td>
+                                <td class="px-6 py-5 text-slate-500">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                        @contract.ContractDate.ToString("yyyy/MM/dd")
+                                    </div>
+                                </td>
+                                <td class="px-6 py-5">
+                                    @if (!string.IsNullOrWhiteSpace(contract.AttachmentUrl))
+                                    {
+                                        <a class="inline-flex items-center gap-1.5 font-bold text-identity-green hover:underline" href="@contract.AttachmentUrl" target="_blank">
+                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                            استعراض
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-xs text-slate-300 italic">غير متوفر</span>
+                                    }
+                                </td>
+                                <td class="px-6 py-5 text-center">
+                                    <button class="rounded-xl border border-identity-red/20 bg-white px-4 py-2 text-[11px] font-bold text-identity-red transition-all hover:bg-identity-red hover:text-white" @onclick="() => DeleteContractAsync(contract.Id)">حذف السجل</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private List<GovContracts.Web.Models.ContractModel> _contracts = [];
+    private bool _isLoading;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!await AuthSession.IsLoggedInAsync())
+        {
+            Navigation.NavigateTo("/login", true);
+            return;
+        }
+
+        await LoadContractsAsync();
+    }
+
+    private async Task LoadContractsAsync()
+    {
+        _isLoading = true;
+        var data = await ContractsApi.GetAllAsync();
+        _contracts = data.ToList();
+        _isLoading = false;
+    }
+
+    private async Task DeleteContractAsync(Guid id)
+    {
+        var deleted = await ContractsApi.DeleteAsync(id);
+        if (deleted)
+        {
+            await LoadContractsAsync();
+        }
+    }
+}

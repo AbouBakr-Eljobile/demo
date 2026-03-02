@@ -1,0 +1,54 @@
+:root {
+    --identity-gold: #D4AF37;
+    --identity-green: #006837;
+    --identity-red: #B22222;
+    --cairo-font: 'Cairo', sans-serif;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background-color: #f8fafc;
+    font-family: var(--cairo-font);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+#blazor-error-ui {
+    display: none;
+}
+
+/* Custom classes for the identity colors */
+.bg-identity-gold { background-color: var(--identity-gold); }
+.text-identity-gold { color: var(--identity-gold); }
+.border-identity-gold { border-color: var(--identity-gold); }
+
+.bg-identity-green { background-color: var(--identity-green); }
+.text-identity-green { color: var(--identity-green); }
+.border-identity-green { border-color: var(--identity-green); }
+
+.bg-identity-red { background-color: var(--identity-red); }
+.text-identity-red { color: var(--identity-red); }
+.border-identity-red { border-color: var(--identity-red); }
+
+.btn-primary {
+    background-color: var(--identity-green);
+    color: white;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #00562e;
+}
+
+.login-card {
+    border-top: 4px solid var(--identity-gold);
+}
