@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "srEo+fPBSqw=",
+  "dgSpecHash": "U7ZvKkN8Kl0=",
   "success": true,
-  "projectFilePath": "d:\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj",
+  "projectFilePath": "/home/runner/work/demo/demo/backend/GovContracts.Api/GovContracts.Api.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.13\\microsoft.aspnetcore.openapi.9.0.13.nupkg.sha512",
-    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+    "/home/runner/.nuget/packages/microsoft.aspnetcore.openapi/9.0.13/microsoft.aspnetcore.openapi.9.0.13.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.netcore.app.ref/9.0.12/microsoft.netcore.app.ref.9.0.12.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.12/microsoft.aspnetcore.app.ref.9.0.12.nupkg.sha512",
+    "/home/runner/.nuget/packages/microsoft.netcore.app.host.linux-x64/9.0.12/microsoft.netcore.app.host.linux-x64.9.0.12.nupkg.sha512"
   ],
   "logs": []
 }

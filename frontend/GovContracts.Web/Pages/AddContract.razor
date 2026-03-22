@@ -6,67 +6,88 @@
 
 <PageTitle>إضافة عقد</PageTitle>
 
-<div class="mx-auto max-w-3xl rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
-    <div class="mb-8 border-b border-slate-50 pb-6">
-        <h1 class="text-2xl font-bold text-identity-green">إضافة عقد جديد</h1>
-        <p class="mt-1 text-sm text-slate-500">الرجاء تعبئة بيانات العقد ورفع المرفق إن وجد.</p>
+<div class="space-y-6">
+    <!-- Page Header -->
+    <div class="flex items-center gap-4">
+        <a href="/dashboard" class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 text-slate-400 transition-all hover:bg-slate-50 hover:text-slate-600">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+        <div>
+            <h1 class="text-2xl font-bold text-slate-900">إضافة عقد جديد</h1>
+            <p class="mt-1 text-sm text-slate-400">الرجاء تعبئة بيانات العقد ورفع المرفق إن وجد</p>
+        </div>
     </div>
 
-    @if (!string.IsNullOrWhiteSpace(_statusMessage))
-    {
-        <div class="mb-6 flex items-center gap-3 rounded-2xl border px-4 py-4 text-sm @(_isSuccess ? "border-identity-green/20 bg-identity-green/5 text-identity-green" : "border-identity-red/20 bg-identity-red/5 text-identity-red")">
-            @if (_isSuccess) {
-                <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            } else {
-                <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            }
-            <span>@_statusMessage</span>
-        </div>
-    }
-
-    <EditForm class="space-y-6" Model="_model" OnValidSubmit="HandleSubmitAsync">
-        <DataAnnotationsValidator />
-
-        <div class="space-y-2">
-            <label class="block text-sm font-bold text-slate-700 mx-1">اسم العقد</label>
-            <InputText @bind-Value="_model.ContractName" class="w-full rounded-2xl border-2 border-slate-50 bg-slate-50 px-5 py-3.5 text-sm outline-none transition-all focus:border-identity-green focus:bg-white" placeholder="أدخل مسمى العقد الرسمي" />
-            <ValidationMessage For="@(() => _model.ContractName)" class="mt-1 block text-xs text-identity-red" />
-        </div>
-
-        <div class="space-y-2">
-            <label class="block text-sm font-bold text-slate-700 mx-1">تاريخ العقد</label>
-            <InputDate @bind-Value="_model.ContractDate" class="w-full rounded-2xl border-2 border-slate-50 bg-slate-50 px-5 py-3.5 text-sm outline-none transition-all focus:border-identity-green focus:bg-white" />
-            <ValidationMessage For="@(() => _model.ContractDate)" class="mt-1 block text-xs text-identity-red" />
-        </div>
-
-        <div class="space-y-2">
-            <label class="block text-sm font-bold text-slate-700 mx-1">مرفق العقد (PDF/صور)</label>
-            <div class="relative">
-                <InputFile OnChange="OnFileSelected" class="w-full cursor-pointer rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50/50 px-6 py-8 text-center text-sm transition-all hover:bg-slate-50 hover:border-identity-gold" />
-                @if (_selectedFile is not null)
-                {
-                    <div class="mt-3 flex items-center gap-2 rounded-xl bg-identity-gold/10 px-3 py-2 text-xs font-bold text-identity-gold">
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                        @_selectedFile.Name
-                    </div>
+    <!-- Form Card -->
+    <div class="mx-auto max-w-3xl rounded-3xl bg-white p-6 sm:p-8 shadow-sm border border-slate-100">
+        @if (!string.IsNullOrWhiteSpace(_statusMessage))
+        {
+            <div class="mb-6 flex items-center gap-3 rounded-2xl border px-4 py-4 text-sm @(_isSuccess ? "border-identity-green/20 bg-identity-green/5 text-identity-green" : "border-identity-red/20 bg-identity-red/5 text-identity-red")">
+                @if (_isSuccess) {
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                } else {
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 }
+                <span>@_statusMessage</span>
             </div>
-        </div>
+        }
 
-        <div class="flex items-center gap-4 pt-4">
-            <button type="submit" class="flex-1 rounded-2xl bg-identity-green px-8 py-4 text-sm font-bold text-white shadow-lg transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-50" disabled="@_isSubmitting">
-                @if (_isSubmitting)
-                {
-                    <span>جاري تسجيل البيانات...</span>
-                }
-                else
-                {
-                    <span>حفظ وتوثيق العقد</span>
-                }
-            </button>
-            <a href="/dashboard" class="rounded-2xl border-2 border-slate-100 bg-white px-8 py-4 text-sm font-bold text-slate-600 transition-all hover:bg-slate-50">إلغاء</a>
-        </div>
-    </EditForm>
+        <EditForm class="space-y-6" Model="_model" OnValidSubmit="HandleSubmitAsync">
+            <DataAnnotationsValidator />
+
+            <div class="space-y-2">
+                <label class="block text-sm font-bold text-slate-700 mx-1">اسم العقد</label>
+                <div class="relative">
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    </div>
+                    <InputText @bind-Value="_model.ContractName" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 pr-12 pl-5 py-4 text-sm outline-none transition-all focus:border-identity-green focus:bg-white" placeholder="أدخل مسمى العقد الرسمي" />
+                </div>
+                <ValidationMessage For="@(() => _model.ContractName)" class="mt-1 block text-xs text-identity-red" />
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-bold text-slate-700 mx-1">تاريخ العقد</label>
+                <div class="relative">
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                    </div>
+                    <InputDate @bind-Value="_model.ContractDate" class="w-full rounded-2xl border-2 border-slate-100 bg-slate-50 pr-12 pl-5 py-4 text-sm outline-none transition-all focus:border-identity-green focus:bg-white" />
+                </div>
+                <ValidationMessage For="@(() => _model.ContractDate)" class="mt-1 block text-xs text-identity-red" />
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-bold text-slate-700 mx-1">مرفق العقد (PDF/صور)</label>
+                <div class="relative">
+                    <InputFile OnChange="OnFileSelected" class="w-full cursor-pointer rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50/50 px-6 py-8 text-center text-sm transition-all hover:bg-slate-50 hover:border-identity-green/40" />
+                    @if (_selectedFile is not null)
+                    {
+                        <div class="mt-3 flex items-center gap-2 rounded-xl bg-identity-green/5 px-4 py-2.5 text-xs font-bold text-identity-green">
+                            <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                            @_selectedFile.Name
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4 border-t border-slate-100">
+                <button type="submit" class="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-identity-green px-8 py-4 text-sm font-bold text-white shadow-lg shadow-identity-green/20 transition-all hover:shadow-xl hover:shadow-identity-green/30 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50" disabled="@_isSubmitting">
+                    @if (_isSubmitting)
+                    {
+                        <div class="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
+                        <span>جاري تسجيل البيانات...</span>
+                    }
+                    else
+                    {
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                        <span>حفظ وتوثيق العقد</span>
+                    }
+                </button>
+                <a href="/dashboard" class="flex items-center justify-center rounded-2xl border-2 border-slate-100 bg-white px-8 py-4 text-sm font-bold text-slate-600 transition-all hover:bg-slate-50 hover:border-slate-200">إلغاء</a>
+            </div>
+        </EditForm>
+    </div>
 </div>
 
 @code {
