@@ -26,29 +26,38 @@ a {
     display: none;
 }
 
-/* Custom classes for the identity colors */
-.bg-identity-gold { background-color: var(--identity-gold); }
-.text-identity-gold { color: var(--identity-gold); }
-.border-identity-gold { border-color: var(--identity-gold); }
-
-.bg-identity-green { background-color: var(--identity-green); }
-.text-identity-green { color: var(--identity-green); }
-.border-identity-green { border-color: var(--identity-green); }
-
-.bg-identity-red { background-color: var(--identity-red); }
-.text-identity-red { color: var(--identity-red); }
-.border-identity-red { border-color: var(--identity-red); }
-
-.btn-primary {
-    background-color: var(--identity-green);
-    color: white;
-    transition: all 0.2s;
+/* Smooth page transitions */
+.page-enter {
+    animation: fadeIn 0.3s ease-out;
 }
 
-.btn-primary:hover {
-    background-color: #00562e;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.login-card {
-    border-top: 4px solid var(--identity-gold);
+/* Active sidebar link */
+.nav-link-active {
+    background-color: rgba(0, 104, 55, 0.08);
+    color: #006837;
+    font-weight: 700;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
 }
