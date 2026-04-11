@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "GovContracts.Web",
   "resources": {
-    "hash": "sha256-Q4rsb7Ktnfv0m6o0E92wnBSQckGIMKBQ9L4qEAPvW4U=",
+    "hash": "sha256-hCUpdiNCX2pFxw+Zfg3TeqjMHZYbLKgrn3slbRI4eqc=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Authorization.9taw8vfmpb.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.kr0rm7hoa3.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -201,8 +201,8 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "GovContracts.Web.l74trzbbzh.wasm": "GovContracts.Web.wasm",
-      "GovContracts.Web.f39sq291n4.pdb": "GovContracts.Web.pdb"
+      "GovContracts.Web.aupc0pih9q.wasm": "GovContracts.Web.wasm",
+      "GovContracts.Web.dkd2ul7wvw.pdb": "GovContracts.Web.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.6m0hb3g78a.js": "sha256-oksVqHEW5dic8ULICrYkuUVNascZfAw7ZPMG45TR/ak="
@@ -412,10 +412,10 @@
       "WindowsBase.g3ep9asl8e.wasm": "sha256-ZNubnH6lgybyHtAdlMT40aDBYT2V7npJIDu1AwBtujs=",
       "mscorlib.l7xs6zruqy.wasm": "sha256-3waJ44t0BBPDuFSBnvKXk4ReWykH4S/GJoncIfrAlvg=",
       "netstandard.97to7qusgy.wasm": "sha256-K2fLR0yH1WiUkzlu09Y2p2sm9BhyhGsoYJBopqdIuV4=",
-      "GovContracts.Web.l74trzbbzh.wasm": "sha256-kZF2rzsd9RBYjOyg3iW44irvfHReHgHdkqJC8CduhwY="
+      "GovContracts.Web.aupc0pih9q.wasm": "sha256-0nH15obfhdx6DA1GFYb6db7elkv7W659tUg/uD4dKnw="
     },
     "pdb": {
-      "GovContracts.Web.f39sq291n4.pdb": "sha256-C49QOYwhmo9AhsOqcAfL3/scNoMVfnUv9Irzp2FoKa8="
+      "GovContracts.Web.dkd2ul7wvw.pdb": "sha256-LXPCm/VYnG1wqKrAagTphwE2DCc/ZQ0EN66/Ol3fzBo="
     }
   },
   "cacheBootResources": true,

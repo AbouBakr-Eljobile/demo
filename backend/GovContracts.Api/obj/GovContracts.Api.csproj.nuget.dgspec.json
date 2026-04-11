@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj": {}
+    "D:\\DIS\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj": {}
   },
   "projects": {
-    "d:\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj": {
+    "D:\\DIS\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj",
+        "projectUniqueName": "D:\\DIS\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj",
         "projectName": "GovContracts.Api",
-        "projectPath": "d:\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj",
+        "projectPath": "D:\\DIS\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj",
         "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-        "outputPath": "d:\\demo\\backend\\GovContracts.Api\\obj\\",
+        "outputPath": "D:\\DIS\\demo\\backend\\GovContracts.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"

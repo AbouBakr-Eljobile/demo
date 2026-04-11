@@ -80,11 +80,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj",
+      "projectUniqueName": "D:\\DIS\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj",
       "projectName": "GovContracts.Api",
-      "projectPath": "D:\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj",
+      "projectPath": "D:\\DIS\\demo\\backend\\GovContracts.Api\\GovContracts.Api.csproj",
       "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\demo\\backend\\GovContracts.Api\\obj\\",
+      "outputPath": "D:\\DIS\\demo\\backend\\GovContracts.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"

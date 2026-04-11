@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\demo\\frontend\\GovContracts.Web\\GovContracts.Web.csproj": {}
+    "D:\\DIS\\demo\\frontend\\GovContracts.Web\\GovContracts.Web.csproj": {}
   },
   "projects": {
-    "D:\\demo\\frontend\\GovContracts.Web\\GovContracts.Web.csproj": {
+    "D:\\DIS\\demo\\frontend\\GovContracts.Web\\GovContracts.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\demo\\frontend\\GovContracts.Web\\GovContracts.Web.csproj",
+        "projectUniqueName": "D:\\DIS\\demo\\frontend\\GovContracts.Web\\GovContracts.Web.csproj",
         "projectName": "GovContracts.Web",
-        "projectPath": "D:\\demo\\frontend\\GovContracts.Web\\GovContracts.Web.csproj",
+        "projectPath": "D:\\DIS\\demo\\frontend\\GovContracts.Web\\GovContracts.Web.csproj",
         "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-        "outputPath": "D:\\demo\\frontend\\GovContracts.Web\\obj\\",
+        "outputPath": "D:\\DIS\\demo\\frontend\\GovContracts.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"
