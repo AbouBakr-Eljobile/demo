@@ -32,15 +32,11 @@ public class ContractService : IContractService
         var contract = new Contract
         {
             ContractName = dto.ContractName,
-            ContractDate = dto.ContractDate
+            ContractDescription = dto.ContractDescription,
+            ContractDate = dto.ContractDate,
+            ContractValue = dto.ContractValue,
+            Attachments = await MapAttachmentsAsync(dto.Attachments, baseUrl, cancellationToken)
         };
-
-        if (dto.ContractAttachment is not null)
-        {
-            var fileResult = await _fileStorageService.SaveContractAttachmentAsync(dto.ContractAttachment, cancellationToken);
-            contract.AttachmentFileName = fileResult.FileName;
-            contract.AttachmentUrl = BuildAttachmentUrl(baseUrl, fileResult.RelativePath);
-        }
 
         var created = await _contractRepository.CreateAsync(contract, cancellationToken);
         return MapToResponse(created);
@@ -55,14 +51,10 @@ public class ContractService : IContractService
         }
 
         current.ContractName = dto.ContractName;
+        current.ContractDescription = dto.ContractDescription;
         current.ContractDate = dto.ContractDate;
-
-        if (dto.ContractAttachment is not null)
-        {
-            var fileResult = await _fileStorageService.SaveContractAttachmentAsync(dto.ContractAttachment, cancellationToken);
-            current.AttachmentFileName = fileResult.FileName;
-            current.AttachmentUrl = BuildAttachmentUrl(baseUrl, fileResult.RelativePath);
-        }
+        current.ContractValue = dto.ContractValue;
+        current.Attachments = await MapAttachmentsAsync(dto.Attachments, baseUrl, cancellationToken);
 
         var updated = await _contractRepository.UpdateAsync(current, cancellationToken);
         return updated is null ? null : MapToResponse(updated);
@@ -77,11 +69,49 @@ public class ContractService : IContractService
     {
         Id = contract.Id,
         ContractName = contract.ContractName,
+        ContractDescription = contract.ContractDescription,
         ContractDate = contract.ContractDate,
-        AttachmentFileName = contract.AttachmentFileName,
-        AttachmentUrl = contract.AttachmentUrl,
+        ContractValue = contract.ContractValue,
+        Attachments = contract.Attachments
+            .Select(attachment => new ContractAttachmentResponseDto
+            {
+                TemplateId = attachment.TemplateId,
+                AttachmentName = attachment.AttachmentName,
+                IsRequired = attachment.IsRequired,
+                StoredFileName = attachment.StoredFileName,
+                AttachmentUrl = attachment.AttachmentUrl
+            })
+            .ToList(),
         CreatedAtUtc = contract.CreatedAtUtc
     };
+
+    private async Task<List<ContractAttachment>> MapAttachmentsAsync(
+        List<ContractAttachmentCreateDto> attachments,
+        string baseUrl,
+        CancellationToken cancellationToken)
+    {
+        var results = new List<ContractAttachment>();
+        foreach (var attachment in attachments)
+        {
+            var result = new ContractAttachment
+            {
+                TemplateId = attachment.TemplateId,
+                AttachmentName = attachment.AttachmentName,
+                IsRequired = attachment.IsRequired
+            };
+
+            if (attachment.AttachmentFile is not null)
+            {
+                var fileResult = await _fileStorageService.SaveContractAttachmentAsync(attachment.AttachmentFile, cancellationToken);
+                result.StoredFileName = fileResult.FileName;
+                result.AttachmentUrl = BuildAttachmentUrl(baseUrl, fileResult.RelativePath);
+            }
+
+            results.Add(result);
+        }
+
+        return results;
+    }
 
     private static string BuildAttachmentUrl(string baseUrl, string relativePath)
     {

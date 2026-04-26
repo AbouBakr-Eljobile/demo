@@ -4,8 +4,9 @@ public class ContractResponseDto
 {
     public Guid Id { get; set; }
     public string ContractName { get; set; } = string.Empty;
+    public string ContractDescription { get; set; } = string.Empty;
     public DateOnly ContractDate { get; set; }
-    public string? AttachmentFileName { get; set; }
-    public string? AttachmentUrl { get; set; }
+    public decimal ContractValue { get; set; }
+    public List<ContractAttachmentResponseDto> Attachments { get; set; } = [];
     public DateTime CreatedAtUtc { get; set; }
 }

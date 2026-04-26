@@ -1,0 +1,144 @@
+@page "/attachment-templates"
+@inject GovContracts.Web.Services.AttachmentTemplatesApiService AttachmentTemplatesApi
+@inject GovContracts.Web.Services.AuthSessionService AuthSession
+@inject NavigationManager Navigation
+
+<PageTitle>تسميات المرفقات</PageTitle>
+
+<div class="mx-auto max-w-3xl space-y-6">
+    <div class="rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
+        <div class="mb-6 border-b border-slate-50 pb-4">
+            <h1 class="text-2xl font-bold text-identity-green">تسميات المرفقات</h1>
+            <p class="mt-1 text-sm text-slate-500">أضف تسميات المرفقات وحدد إن كانت مطلوبة.</p>
+        </div>
+
+        @if (!string.IsNullOrWhiteSpace(_statusMessage))
+        {
+            <div class="mb-4 rounded-2xl border border-identity-red/20 bg-identity-red/5 px-4 py-3 text-sm font-bold text-identity-red">
+                @_statusMessage
+            </div>
+        }
+
+        <div class="grid gap-4 md:grid-cols-2">
+            <div>
+                <label class="block text-xs font-bold text-slate-500 mb-2">اسم المرفق</label>
+                <input class="w-full rounded-2xl border-2 border-slate-50 bg-slate-50 px-4 py-3 text-sm outline-none transition-all focus:border-identity-green focus:bg-white" @bind="_newName" placeholder="مثال: البيانات المالية" />
+            </div>
+            <div class="flex items-end">
+                <label class="flex items-center gap-2 text-sm font-bold text-slate-600">
+                    <input type="checkbox" class="h-4 w-4 accent-identity-green" @bind="_newIsRequired" />
+                    مطلوب
+                </label>
+            </div>
+        </div>
+        <button class="mt-4 rounded-2xl bg-identity-green px-6 py-3 text-xs font-bold text-white shadow transition-all hover:opacity-90" @onclick="AddTemplateAsync">إضافة التسمية</button>
+
+        <div class="mt-6 overflow-hidden rounded-2xl border border-slate-100">
+            <table class="min-w-full text-right text-sm">
+                <thead class="bg-slate-50/50 text-slate-400">
+                    <tr>
+                        <th class="px-4 py-3 font-bold uppercase tracking-wider">الاسم</th>
+                        <th class="px-4 py-3 font-bold uppercase tracking-wider text-center">الحالة</th>
+                        <th class="px-4 py-3 font-bold uppercase tracking-wider text-center">إجراء</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-50">
+                    @if (_isLoading)
+                    {
+                        <tr>
+                            <td class="px-4 py-6 text-center text-sm text-slate-400" colspan="3">جاري التحميل...</td>
+                        </tr>
+                    }
+                    else if (!_templates.Any())
+                    {
+                        <tr>
+                            <td class="px-4 py-6 text-center text-sm text-slate-400" colspan="3">لا توجد تسميات بعد.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var template in _templates)
+                        {
+                            <tr>
+                                <td class="px-4 py-3 text-slate-600">@template.Name</td>
+                                <td class="px-4 py-3 text-center">
+                                    @if (template.IsRequired)
+                                    {
+                                        <span class="rounded-full bg-identity-red/10 px-2 py-1 text-[11px] font-bold text-identity-red">مطلوب</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="rounded-full bg-slate-100 px-2 py-1 text-[11px] font-bold text-slate-500">اختياري</span>
+                                    }
+                                </td>
+                                <td class="px-4 py-3 text-center">
+                                    <button class="rounded-xl border border-identity-red/20 bg-white px-3 py-2 text-[11px] font-bold text-identity-red transition-all hover:bg-identity-red hover:text-white" @onclick="() => DeleteTemplateAsync(template.Id)">حذف</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<GovContracts.Web.Models.AttachmentTemplateModel> _templates = [];
+    private bool _isLoading = true;
+    private string? _statusMessage;
+    private string _newName = string.Empty;
+    private bool _newIsRequired;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!await AuthSession.IsLoggedInAsync())
+        {
+            Navigation.NavigateTo("/login", true);
+            return;
+        }
+
+        await LoadTemplatesAsync();
+    }
+
+    private async Task LoadTemplatesAsync()
+    {
+        _isLoading = true;
+        _templates = (await AttachmentTemplatesApi.GetAllAsync()).ToList();
+        _isLoading = false;
+    }
+
+    private async Task AddTemplateAsync()
+    {
+        _statusMessage = null;
+        if (string.IsNullOrWhiteSpace(_newName))
+        {
+            _statusMessage = "اسم المرفق مطلوب.";
+            return;
+        }
+
+        var created = await AttachmentTemplatesApi.CreateAsync(_newName, _newIsRequired);
+        if (created is null)
+        {
+            _statusMessage = "تعذر إضافة التسمية.";
+            return;
+        }
+
+        _newName = string.Empty;
+        _newIsRequired = false;
+        await LoadTemplatesAsync();
+    }
+
+    private async Task DeleteTemplateAsync(Guid id)
+    {
+        _statusMessage = null;
+        var deleted = await AttachmentTemplatesApi.DeleteAsync(id);
+        if (!deleted)
+        {
+            _statusMessage = "تعذر حذف التسمية.";
+            return;
+        }
+
+        await LoadTemplatesAsync();
+    }
+}

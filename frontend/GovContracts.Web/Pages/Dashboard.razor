@@ -25,7 +25,7 @@
         <div class="rounded-3xl bg-identity-green p-7 shadow-lg shadow-identity-green/20 text-white flex flex-col justify-between">
             <div>
                  <p class="text-[10px] font-bold uppercase tracking-widest text-white/60">إجراءات سريعة</p>
-                 <h3 class="text-xl font-bold mt-1">تجديد قاعدة البيانات</h3>
+                 <h3 class="text-xl font-bold mt-1">اضافة</h3>
             </div>
             <a class="mt-6 flex items-center justify-center gap-2 rounded-2xl bg-white/20 py-3 text-sm font-bold backdrop-blur-sm transition-all hover:bg-white/30" href="/contracts/add">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
@@ -70,8 +70,10 @@
                     <thead class="bg-slate-50/50 text-slate-400">
                         <tr>
                             <th class="px-6 py-4 font-bold uppercase tracking-wider">مسمى العقد</th>
+                            <th class="px-6 py-4 font-bold uppercase tracking-wider">وصف العقد</th>
                             <th class="px-6 py-4 font-bold uppercase tracking-wider">تاريخ التوثيق</th>
-                            <th class="px-6 py-4 font-bold uppercase tracking-wider">مستند العقد</th>
+                            <th class="px-6 py-4 font-bold uppercase tracking-wider">قيمة العقد</th>
+                            <th class="px-6 py-4 font-bold uppercase tracking-wider">مرفقات العقد</th>
                             <th class="px-6 py-4 font-bold uppercase tracking-wider text-center">عمليات</th>
                         </tr>
                     </thead>
@@ -80,27 +82,25 @@
                         {
                             <tr class="transition-all hover:bg-slate-50/50">
                                 <td class="px-6 py-5 font-bold text-slate-700">@contract.ContractName</td>
+                                <td class="px-6 py-5 text-slate-500">@contract.ContractDescription</td>
                                 <td class="px-6 py-5 text-slate-500">
                                     <div class="flex items-center gap-2">
                                         <svg class="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                                         @contract.ContractDate.ToString("yyyy/MM/dd")
                                     </div>
                                 </td>
+                                <td class="px-6 py-5 text-slate-500">@contract.ContractValue.ToString("N2")</td>
                                 <td class="px-6 py-5">
-                                    @if (!string.IsNullOrWhiteSpace(contract.AttachmentUrl))
-                                    {
-                                        <a class="inline-flex items-center gap-1.5 font-bold text-identity-green hover:underline" href="@contract.AttachmentUrl" target="_blank">
-                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                                            استعراض
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <span class="text-xs text-slate-300 italic">غير متوفر</span>
-                                    }
+                                    <a class="inline-flex items-center gap-1.5 font-bold text-identity-green hover:underline" href="/contracts/@contract.Id">
+                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                        استعراض
+                                    </a>
                                 </td>
                                 <td class="px-6 py-5 text-center">
-                                    <button class="rounded-xl border border-identity-red/20 bg-white px-4 py-2 text-[11px] font-bold text-identity-red transition-all hover:bg-identity-red hover:text-white" @onclick="() => DeleteContractAsync(contract.Id)">حذف السجل</button>
+                                    <div class="flex flex-wrap items-center justify-center gap-2">
+                                        <a class="rounded-xl border border-identity-green/20 bg-white px-4 py-2 text-[11px] font-bold text-identity-green transition-all hover:bg-identity-green hover:text-white" href="/contracts/@contract.Id">عرض</a>
+                                        <button class="rounded-xl border border-identity-red/20 bg-white px-4 py-2 text-[11px] font-bold text-identity-red transition-all hover:bg-identity-red hover:text-white" @onclick="() => DeleteContractAsync(contract.Id)">حذف السجل</button>
+                                    </div>
                                 </td>
                             </tr>
                         }

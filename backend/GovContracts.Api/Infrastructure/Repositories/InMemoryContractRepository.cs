@@ -68,9 +68,19 @@ public class InMemoryContractRepository : IContractRepository
     {
         Id = contract.Id,
         ContractName = contract.ContractName,
+        ContractDescription = contract.ContractDescription,
         ContractDate = contract.ContractDate,
-        AttachmentFileName = contract.AttachmentFileName,
-        AttachmentUrl = contract.AttachmentUrl,
+        ContractValue = contract.ContractValue,
+        Attachments = contract.Attachments
+            .Select(attachment => new ContractAttachment
+            {
+                TemplateId = attachment.TemplateId,
+                AttachmentName = attachment.AttachmentName,
+                IsRequired = attachment.IsRequired,
+                StoredFileName = attachment.StoredFileName,
+                AttachmentUrl = attachment.AttachmentUrl
+            })
+            .ToList(),
         CreatedAtUtc = contract.CreatedAtUtc
     };
 }

@@ -12,5 +12,6 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(apiBaseU
 builder.Services.AddScoped<AuthSessionService>();
 builder.Services.AddScoped<AuthApiService>();
 builder.Services.AddScoped<ContractsApiService>();
+builder.Services.AddScoped<AttachmentTemplatesApiService>();
 
 await builder.Build().RunAsync();
